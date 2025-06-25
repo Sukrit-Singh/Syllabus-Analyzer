@@ -1,71 +1,40 @@
-# Syllabus-Analyzer
-📘 Syllabus Tracker & Analyzer
-A Streamlit web app that allows you to track, edit, and analyze syllabus progress interactively using a simple CSV file. Perfect for students, teachers, or course coordinators.
+# 📘 Syllabus Tracker & Analyzer
 
-🔧 Features
-✅ Upload a syllabus CSV file
+A simple and interactive **Streamlit web app** to **track**, **edit**, and **analyze your syllabus** in real time using a CSV file.
 
-✏️ Edit topic statuses (Pending, Completed, In Progress)
+Perfect for students, teachers, self-learners, or academic coordinators who want to manage study progress visually and efficiently.
 
-📉 Track syllabus progress by subject
+---
 
-📊 Visualize:
+## 🚀 Features
 
-Topics per subject
+- 📁 Upload your syllabus CSV file
+- ✏️ Edit topic status (Pending / Completed / In Progress)
+- 📊 Analyze progress:
+  - Topics per subject
+  - Weekly topic distribution
+  - Completion status via pie chart
+- 💾 Download updated syllabus with changes
 
-Weekly topic distribution
+---
 
-Completion status (pie chart)
+## 🖼️ Preview
 
-💾 Download the updated CSV file
+| Tracker Tab | Analyzer Tab |
+|-------------|--------------|
+| ![tracker](https://via.placeholder.com/400x250.png?text=Tracker+UI+Preview) | ![analyzer](https://via.placeholder.com/400x250.png?text=Analyzer+UI+Preview) |
 
-📁 CSV Format
-Make sure your CSV includes at least the following columns:
+> Replace the image URLs with real screenshots if you wish!
 
-c
-Copy
-Edit
+---
+
+## 📁 Sample CSV Format
+
+Make sure your CSV contains at least the following columns:
+
+```csv
 Subject,Topic,Week,Status
 Math,Algebra,1,Completed
 Math,Geometry,2,Pending
 Physics,Motion,1,In Progress
 Chemistry,Acids,1,Completed
-Week column is optional but recommended.
-
-🚀 How to Run
-Install dependencies (if not already):
-
-bash
-Copy
-Edit
-pip install streamlit pandas matplotlib
-Run the app:
-
-bash
-Copy
-Edit
-streamlit run syllabus_tracker_analyzer_app.py
-Upload your .csv file through the sidebar and start tracking!
-
-📸 Screenshots
-🔹 Tracker Tab
-Update the status of each topic quickly and save changes.
-
-🔹 Analyzer Tab
-Visual summary of subject progress, weekly topics, and completion status.
-
-📦 File Structure
-Copy
-Edit
-📁 syllabus-tracker/
-├── syllabus_tracker_analyzer_app.py
-└── README.md
-🧠 To-Do / Future Enhancements
- Add new topics directly from the app
-
- Filter by subject or week
-
- Export progress report as PDF
-
-💡 License
-MIT License — feel free to use and modify it for personal or academic use.
