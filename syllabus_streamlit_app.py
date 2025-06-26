@@ -28,11 +28,13 @@ if df is not None:
 
         # ========== TRACKER TAB ==========
         with tab1:
-            st.subheader("✏️ Edit Syllabus Status")
+            st.subheader("✏️ Edit Syllabus Status & Manage Topics")
 
+            to_delete = []
             edited_statuses = []
+
             for i, row in df.iterrows():
-                col1, col2, col3, col4 = st.columns([3, 3, 2, 2])
+                col1, col2, col3, col4, col5 = st.columns([3, 3, 2, 2, 1])
                 with col1:
                     st.text(row.get('Subject', 'N/A'))
                 with col2:
@@ -49,8 +51,44 @@ if df is not None:
                         key=f"status_{i}"
                     )
                     edited_statuses.append(new_status)
+                with col5:
+                    delete = st.checkbox("🗑", key=f"del_{i}")
+                    to_delete.append(delete)
 
+            # Update statuses
             df['Status'] = edited_statuses
+
+            # Delete selected rows
+            if any(to_delete):
+                df = df[~pd.Series(to_delete).values].reset_index(drop=True)
+                st.success("✅ Deleted selected topic(s)")
+
+            st.subheader("➕ Add a New Topic")
+            with st.form(key="add_topic_form"):
+                col1, col2, col3, col4 = st.columns([3, 3, 2, 2])
+                with col1:
+                    new_subject = st.text_input("Subject")
+                with col2:
+                    new_topic = st.text_input("Topic")
+                with col3:
+                    new_week = st.text_input("Week")
+                with col4:
+                    new_status = st.selectbox("Status", ["Pending", "Completed", "In Progress"])
+
+                submit_button = st.form_submit_button(label="Add Topic")
+
+            if submit_button:
+                if new_subject and new_topic:
+                    new_row = {
+                        "Subject": new_subject,
+                        "Topic": new_topic,
+                        "Week": new_week if new_week else "N/A",
+                        "Status": new_status
+                    }
+                    df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+                    st.success(f"✅ Added new topic: {new_topic} under {new_subject}")
+                else:
+                    st.error("❗ Subject and Topic are required fields.")
 
             st.subheader("💾 Download Updated CSV")
             buffer = io.StringIO()
